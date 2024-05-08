@@ -9,12 +9,13 @@ export default function TabContainer() {
   const handleApiRequest = () => {
     // Send API request here
     console.log("API request sent");
-    fetch("https://jsonplaceholder.typicode.com/posts/1")
+    fetch("http://127.0.0.1:5000/hello")
       .then((response) => {
         console.log(response);
         return response.json(); // 2번째 then에 전달과 데이터 표시를 위한 결과값 반환
       })
-      .then((response) => console.log(`type : ${typeof response}`))
+      // 이제 모든 과정이 완료된 후 결과값을 보기 위한 console.log를 추가했습니다.
+      .then((response) => console.log(`type : ${typeof response}`, response))
       .catch((error) => console.error(error));
   };
 
