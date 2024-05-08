@@ -47,4 +47,6 @@ uvicorn {app 서버 파일 이름}:app --reload
 
 // 디버깅 기능까지 제공하는 fastapi (swagger)
 ~~서버/docs
+
+cherry pick done!
 ```
