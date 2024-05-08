@@ -2,10 +2,16 @@
 # 두개의 모듈을 호출한 사례
 from flask import Flask 
 from flask import render_template
+from flask_cors import CORS
 
 # 만약 아래의 코드가 Node.js라면
 # const app = new Flask(app.py); 와 같은 명령이 될 것
 app = Flask(__name__)
+# CORS는 Cross-Origin Resource Sharing의 약자로, 다른 도메인에서 리소스를 공유할 수 있도록 해주는 기능.
+# CORS는 Flask-CORS 라이브러리를 사용하여 쉽게 구현할 수 있다.
+# CORS는 Flask 인스턴스에 적용할 수 있으며, origins 매개변수에 허용할 도메인을 지정할 수 있다.
+# 아래의 코드는 http://localhost:3000 도메인에서 오는 요청만 허용하겠다는 뜻이다.
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 
 # '@' ~에서 라는 뜻을 가지고 있는 atSign은 '데코레이터'라는 문법으로 객체지향 언어에서 매우 자주 기용하며, node.js의 Nest.js도 데코레이터를 사용한다. 
@@ -15,7 +21,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 #위의 함수는 라우팅을 통해 '/'로 들어오는 요청을 처리하는 함수로, 직관적으로 render를 위한 것이라는 것을 쉽게 알아챌 수 있다.
-
+@app.route('/hello')
+def hello():
+    print('hello, world!')
+    return {'message': 'Hello, World!'}
 # 아래의 조건문은
 # __ 언더스코어가 두개씩 들어간 코드는 일반적으로 파이썬 언어자체의 특수한 문법을 나타내는 경우가 많다.
 # 파이썬 코어 
