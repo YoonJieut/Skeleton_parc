@@ -26,3 +26,9 @@ export default function TabContainer() {
 }
 
 ```
+
+# cors 연결
+
+- flask, fastapi와 연동되거나 제공되는 라이브러리를 설정한다.
+
+- 이때, 서버 측에서만 연결하면 된다.
