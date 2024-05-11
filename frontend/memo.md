@@ -36,3 +36,5 @@ export default function TabContainer() {
 # django를 쓰는 이유
 
 - 검토 필요
+
+# skeleton에 필요한 작업 리스트업
