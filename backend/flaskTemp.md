@@ -16,7 +16,7 @@ from flask_cors import CORS
 
 # 만약 아래의 코드가 Node.js라면
 # const app = new Flask(app.py); 와 같은 명령이 될 것
-app = Flask(__name__)
+app = Flask(__naame__)
 # CORS는 Cross-Origin Resource Sharing의 약자로, 다른 도메인에서 리소스를 공유할 수 있도록 해주는 기능.
 # CORS는 Flask-CORS 라이브러리를 사용하여 쉽게 구현할 수 있다.
 # CORS는 Flask 인스턴스에 적용할 수 있으며, origins 매개변수에 허용할 도메인을 지정할 수 있다.
