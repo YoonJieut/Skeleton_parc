@@ -16,6 +16,18 @@ pip freeze > requirements.txt
 // 설치하는 방법
 pip install -r requirements.txt
 
+// django 종속성 설치
+pip install django
+// django 삭제
+pip uninstall django
+// django 종속성 버전 설치
+pip install django==설치하려는 버전
+// django 앱 설치
+django-admin startproject myproject
+cd myproject
+python manage.py startapp myapp
+
+
 // 실행
 python app.py
 ```
