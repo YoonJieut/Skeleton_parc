@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from drf.views import fetch_cultural_events
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cultural-events/', fetch_cultural_events, name='cultural-events'),
 ]
