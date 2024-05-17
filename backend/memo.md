@@ -6,4 +6,3 @@
 
 - settings.py 세팅 변경
 - url postman으로 테스트해보기
-- dkkkkk django silta

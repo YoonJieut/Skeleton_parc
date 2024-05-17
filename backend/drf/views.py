@@ -23,4 +23,4 @@ def fetch_cultural_events(request):
         print("Response Content:", response.content)  # 응답 내용 출력
         raise ValueError("Unable to decode JSON.") from e
     
-    # asdsalkfjdas;lkfjdsal;kfjsad에럭가 발생햇다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
+    
