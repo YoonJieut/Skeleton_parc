@@ -6,3 +6,10 @@
 
 - settings.py 세팅 변경
 - url postman으로 테스트해보기
+
+## Djnago 자주 쓰는 커맨드 정리
+
+```
+(가상환경 파일 이름)\Scripts\Activate
+python manage.py runserver
+```
