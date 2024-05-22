@@ -1,12 +1,22 @@
+# Template 공유 (flask)
+
+- flask
+- flask-cors
+
+## 가장 기본적인 형태로, cors가 세팅되어 있다.
+
+- front - backend 연동 확인 완료
+
+```
 # 첫글자가 대문자인 Flask 프레임워크 호출은 Node.js와 동일하게 '생성자 함수'를 뜻한다.
 # 두개의 모듈을 호출한 사례
-from flask import Flask 
+from flask import Flask
 from flask import render_template
 from flask_cors import CORS
 
 # 만약 아래의 코드가 Node.js라면
 # const app = new Flask(app.py); 와 같은 명령이 될 것
-app = Flask(__name__)
+app = Flask(__naame__)
 # CORS는 Cross-Origin Resource Sharing의 약자로, 다른 도메인에서 리소스를 공유할 수 있도록 해주는 기능.
 # CORS는 Flask-CORS 라이브러리를 사용하여 쉽게 구현할 수 있다.
 # CORS는 Flask 인스턴스에 적용할 수 있으며, origins 매개변수에 허용할 도메인을 지정할 수 있다.
@@ -14,7 +24,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 
-# '@' ~에서 라는 뜻을 가지고 있는 atSign은 '데코레이터'라는 문법으로 객체지향 언어에서 매우 자주 기용하며, node.js의 Nest.js도 데코레이터를 사용한다. 
+# '@' ~에서 라는 뜻을 가지고 있는 atSign은 '데코레이터'라는 문법으로 객체지향 언어에서 매우 자주 기용하며, node.js의 Nest.js도 데코레이터를 사용한다.
 # flask 에서는  아래와 같은 방식으로 라우팅을 설정한다.
 @app.route('/')
 # 함수 정의가 아래가 끝이다. 중괄호를 사용하지 않기 때문에 들여쓰기가 매우 중요하다.
@@ -27,7 +37,7 @@ def hello():
     return {'message': 'Hello, World!'}
 # 아래의 조건문은
 # __ 언더스코어가 두개씩 들어간 코드는 일반적으로 파이썬 언어자체의 특수한 문법을 나타내는 경우가 많다.
-# 파이썬 코어 
+# 파이썬 코어
 # __name__ : 현재 실행되는 스크립트
 # __main__ : 메인 스크립트(엔트리 포인트)라는 뜻
 # == : 비교연산자로, 자바스크립트에서는 권장하지 않는 문법이지만,
@@ -42,3 +52,4 @@ if __name__ == '__main__':
 # print(app)
 # 자바스크립트의 console.dir()과 같은 역할을 하는 코드
 # print(dir(app))
+```
