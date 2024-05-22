@@ -1,27 +1,35 @@
 # Django REST framework를 사용하여 API 뷰를 생성할 수 있음. 필요하다면 pip install djangorestframework로 설치
 
-# from rest_framework import viewsets
-# from .models import Event
-# from .serializers import EventSerializer
-
 # fetch_cultural_events의 경우 requests 라이브러리를 사용하여 외부 API로부터 데이터를 가져옴
+
+# 경로: backend/drf/views.py
+
 import requests
+import logging
 from django.http import JsonResponse
 
+# 로깅 설정
+logger = logging.getLogger(__name__)
 
-# class EventViewSet(viewsets.ModelViewSet):
-#     queryset = Event.objects.all()
-#     serializer_class = EventSerializer
-
-    
 def fetch_cultural_events(request):
+    
     try:
-        response = requests.get('http://www.culture.go.kr/openapi/rest/publicperformancedisplays/area?ServiceKey=XAQRkAc4BBj5RWTWfdEX5Oc5ry0o4j74tmxD5R4HhJoegNLrNTlRZl6%2BCW%2BX%2BC28DAwBYq73UvcNcdB6n591bg%3D%3D&amp;cPage=1&amp;rows=999')
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+        response = requests.get('http://www.culture.go.kr/openapi/rest/publicperformancedisplays/area', headers=headers, params={
+            'ServiceKey': '암호대체ㅁㄴㅇㅁㄴㅇㅁㄴㅇ',
+            'cPage': '1',
+            'rows': '999'
+        })
         response.raise_for_status()  # HTTP 오류가 발생할 경우 예외 발생
-        data = response.json()  # 여기서 JSON 디코딩 시도
+        data = response.json()  # JSON 디코딩 시도
     except ValueError as e:
+        logger.error(f'JSON 디코딩 오류: {e}')
+        logger.error(f'응답 내용: {response.text}')
         return JsonResponse({'error': 'Unable to decode JSON'}, status=400)
     except requests.RequestException as e:
+        logger.error(f'API 요청 오류: {e}')
         return JsonResponse({'error': str(e)}, status=response.status_code)
     
     return JsonResponse(data, safe=False)
