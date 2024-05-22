@@ -17,11 +17,7 @@ def fetch_cultural_events(request):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         }
-        response = requests.get('http://www.culture.go.kr/openapi/rest/publicperformancedisplays/area', headers=headers, params={
-            'ServiceKey': '암호대체ㅁㄴㅇㅁㄴㅇㅁㄴㅇ',
-            'cPage': '1',
-            'rows': '999'
-        })
+        response = requests.get('https://jsonplaceholder.typicode.com/users', headers=headers)
         response.raise_for_status()  # HTTP 오류가 발생할 경우 예외 발생
         data = response.json()  # JSON 디코딩 시도
     except ValueError as e:
