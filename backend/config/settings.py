@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+# todo : cors 세팅하는 값 수정 필요, 현재는 테스트이므로 모든 도메인에서의 접근을 허용하도록 설정
 CORS_ALLOW_ALL_ORIGINS = True  # 모든 도메인에서의 접근 허용
 
 ROOT_URLCONF = 'config.urls'
