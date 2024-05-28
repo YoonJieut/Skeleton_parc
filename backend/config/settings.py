@@ -11,21 +11,30 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config, Csv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b1icg7a#z%e%+(8+5xs!*vl7h&o-a7oteio5=jrvg2l2ndak)9'
+# SECRET_KEY = 'django-insecure-b1icg7a#z%e%+(8+5xs!*vl7h&o-a7oteio5=jrvg2l2ndak)9'
+# * 환경 변수에서 값 읽기
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+CULTURE_API_KEY = config('CULTURE_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
+# * 기타 설정
 ALLOWED_HOSTS = []
+# .env에 작성했을 시
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 
 
 # Application definition
@@ -39,9 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'drf',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,15 +60,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
+# CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
+CSRF_COOKIE_SECURE = False
+
 # todo : cors 세팅하는 값 수정 필요, 현재는 테스트이므로 모든 도메인에서의 접근을 허용하도록 설정
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
+
 # CORS_ALLOW_ALL_ORIGINS = True  # 모든 도메인에서의 접근 허용
-CORS_ALLOW_HEADERS = [
-    'content-type',
-    'authorization',
-]
+# CORS_ALLOW_HEADERS = [
+#     'content-type',
+#     'authorization',
+# ]
 CORS_ALLOW_METHODS = [
     'GET',
     'POST',
@@ -169,6 +186,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
+         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
         'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ]
 }
